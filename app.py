@@ -13,7 +13,7 @@ from SSL_test import load_model
 
 
 APP_ROOT = "template"
-DETECTOR_MODEL_PATH = "static/17_model_resnet.pth"
+DETECTOR_MODEL_PATH = "static/V17_model_resnet.pth"
 SSL_MODEL_PATH = "static/V10_kfold_siamese_SPP_attention_Ichannel.txt_fold4_best.pth"
 CONFIDENCE_THRESHOLD = 0.5
 NUM_VIEWS = 3

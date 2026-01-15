@@ -156,6 +156,11 @@ def index():
     return send_from_directory(APP_ROOT, "v2index.html")
 
 
+@app.get("/fonts/<path:filename>")
+def fonts(filename):
+    return send_from_directory("fonts", filename)
+
+
 @app.post("/api/predict")
 def predict():
     files = request.files.getlist("images")

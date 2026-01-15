@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Michael Shen" />
+  <title>Loading</title>
+  <style>
+    :root{
+      --loader-bg: #c5b8e4;
+      --loader-accent: #ffc82e;
+      --loader-ink: #ffffff;
+      --slide-fade-ms: 600;
+      --slide-zoom: 1.04;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body{
+      display: grid;
+      place-items: center;
+      background: var(--loader-bg);
+      color: var(--loader-ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      overflow: hidden;
+    }
+
+    .slideshow{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: var(--loader-bg);
+    }
+
+    .slide{
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-size: cover;
+      opacity: 0;
+      transform: scale(var(--slide-zoom));
+      transition: opacity calc(var(--slide-fade-ms) * 1ms) ease;
+      will-change: opacity;
+    }
+
+    .slide.is-active{
+      opacity: 1;
+    }
+
+    .slideshow__scrim{
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .loader{
+      position: relative;
+      display: grid;
+      place-items: center;
+      gap: 16px;
+      text-align: center;
+      z-index: 1;
+    }
+
+
+
+    .loader__text{
+      font-size: 88px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .page-loader__author{
+    font-size: 15px;
+    font-weight: 400;
+    transform: translateX(300%) translateY(-100%);
+
+  }
+
+    .loader__text::after{
+      content: "";
+      display: inline-block;
+      width: 45px;
+      height: 6px;
+      margin-left: 0;
+      background: var(--loader-ink);
+      border-radius: 0px;
+      vertical-align: baseline;
+      animation: cursor-blink 1s steps(1, end) infinite;
+    }
+
+    @keyframes cursor-blink{
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    @keyframes spin{
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow" aria-hidden="true">
+    <div class="slide slide--a is-active"></div>
+    <div class="slide slide--b"></div>
+    <div class="slideshow__scrim"></div>
+  </div>
+  <div class="loader" role="status" aria-live="polite">
+    <div class="loader__text">FRUIT-MELONBX</div>
+    <div class="page-loader__author">Meihuan Shen</div>
+  </div>
+  <script>
+    (function () {
+      var config = {
+        images: [
+          "load-screen-assets/DSC_0669.jpg",
+          "load-screen-assets/DSC_0670.jpg",
+          "load-screen-assets/DSC_0671.jpg",
+          "load-screen-assets/DSC_0672.jpg",
+          "load-screen-assets/DSC_0686.jpg",
+          "load-screen-assets/DSC_0687.jpg",
+          "load-screen-assets/DSC_0689.jpg",
+          "load-screen-assets/DSC_0690.jpg",
+          "load-screen-assets/DSC_0692.jpg",
+          "load-screen-assets/DSC_0694.jpg",
+          "load-screen-assets/DSC_0695.jpg"
+
+        ],
+        holdMs: 1000,
+        fadeMs: 600,
+        zoom: 1.04
+      };
+
+      if (!config.images.length) {
+        return;
+      }
+
+      document.documentElement.style.setProperty("--slide-fade-ms", String(config.fadeMs));
+      document.documentElement.style.setProperty("--slide-zoom", String(config.zoom));
+
+      var slideA = document.querySelector(".slide--a");
+      var slideB = document.querySelector(".slide--b");
+      var slides = [slideA, slideB];
+      var activeIndex = 0;
+      var imageIndex = Math.floor(Math.random() * config.images.length);
+
+      slides[activeIndex].style.backgroundImage = "url('" + config.images[imageIndex] + "')";
+
+      function cycle() {
+        var nextSlideIndex = (activeIndex + 1) % slides.length;
+        var nextImageIndex = (imageIndex + 1) % config.images.length;
+        var nextSlide = slides[nextSlideIndex];
+
+        nextSlide.style.backgroundImage = "url('" + config.images[nextImageIndex] + "')";
+        nextSlide.classList.add("is-active");
+        slides[activeIndex].classList.remove("is-active");
+
+        activeIndex = nextSlideIndex;
+        imageIndex = nextImageIndex;
+
+        window.setTimeout(cycle, config.holdMs);
+      }
+
+      window.setTimeout(cycle, config.holdMs);
+
+    })();
+  </script>
+</body>
+</html>

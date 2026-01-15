@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>www.melon - Find Your Sweetness</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
     <link rel="stylesheet" href="style.css">
     <link rel='stylesheet' href="animation.css">
     <script src="script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="is-loading">
+<div class="page-loader" id="page-loader" role="status" aria-live="polite">
+    <div class="page-loader__slideshow" aria-hidden="true">
+        <div class="page-loader__slide page-loader__slide--a is-active"></div>
+        <div class="page-loader__slide page-loader__slide--b"></div>
+        <div class="page-loader__scrim"></div>
+    </div>
+    <div class="page-loader__content">
+        <div class="page-loader__text">FRUIT-MELONBX</div>
+        <div class="page-loader__author">Meihuan Shen</div>
+    </div>
+</div>
 
 <div class="stage">
     <div class="desktop-1" data-name="Desktop - 1" data-node-id="1:5">
@@ -283,7 +296,7 @@
             <div class="footer-bg">
                 <div class="shape1"></div>
                 <div class="status-text" data-node-id="107:15">
-                    <p>project in progress, not complete</p>
+                    <p>DEMO V1 <br>mobile version coming soon...</p>
                 </div>
                 <div class="lorem-text" data-node-id="132:45">
                     <div class="navFooterVerticalColumn navAccessibility" role="presentation">
@@ -301,11 +314,13 @@
           <div class="navFooterColHead" role="heading" aria-level="6">HOW TO REACH ME</div>
         <ul class="utis">
             <li class="nav_first">
-              <a href="/dp/B07MJM4F44?plattr=CACBCCFOOT&ref_=nav_cbcc_ca_footer" class="nav_a">EMAIL</a>
+              <a href="mailto:shen172679@gmail.com" class="nav_a">EMAIL-ADDRESS</a>
             </li>
+            <!--
             <li class="nav_last ">
               <a href="/gp/browse.html?node=17321486011&ref_=footer_cash_ca_en" class="nav_a">ADDRESS</a>
             </li>
+            -->
         </ul>
       </div>
   </div>

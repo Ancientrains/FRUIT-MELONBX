@@ -1,3 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+@font-face {
+    font-family: "FONTSPRING DEMO - Vodka Sans";
+    src: url("../fonts/fonnts.com-vodkasans-regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Gliker";
+    src: url("../fonts/Gliker-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Reset and Base Styles */
 
 :root{
@@ -25,6 +43,104 @@ body {
     padding-bottom: max(20vh, calc(100vw * var(--footer-ratio)));
     margin: 0;
     min-height: 100vh;
+}
+
+body.is-loading {
+    background-color: #000000;
+    overflow: hidden;
+}
+
+body.is-loading .stage,
+body.is-loading .footer-root {
+    visibility: hidden;
+}
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: #000000;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 400ms ease, visibility 0ms linear 400ms;
+    overflow: hidden;
+    --slide-fade-ms: 1000;
+    --slide-zoom: 1.04;
+}
+
+.page-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.page-loader__slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: #000000;
+}
+
+.page-loader__slide {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transform: scale(var(--slide-zoom));
+    transition: opacity calc(var(--slide-fade-ms) * 1ms) ease;
+    will-change: opacity;
+}
+
+.page-loader__slide.is-active {
+    opacity: 1;
+}
+
+.page-loader__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.page-loader__content {
+    position: relative;
+    display: grid;
+    place-items: center;
+    gap: 16px;
+    text-align: center;
+    color: #c5b8e4;
+    font-family: "IBM Plex Mono", monospace;
+    z-index: 1;
+}
+
+.page-loader__author{
+    font-size: 15px;
+    font-weight: 300;
+    transform: translateX(300%) translateY(-100%);
+  }
+
+.page-loader__text {
+    font-size: 78px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.page-loader__text::after {
+    content: "";
+    display: inline-block;
+    width: 45px;
+    height: 6px;
+    margin-left: 0;
+    background: #c5b8e4;
+    border-radius: 0px;
+    vertical-align: baseline;
+    animation: page-loader-cursor 1.3s steps(1, end) infinite;
+}
+
+@keyframes page-loader-cursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
 }
 
 .stage{

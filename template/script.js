@@ -15,6 +15,83 @@
     io.observe(target);
 })();
 
+(function () {
+  var loader = document.getElementById("page-loader");
+  if (!loader) {
+    return;
+  }
+
+  var config = {
+    images: [
+      "load-screen-assets/DSC_0669.jpg",
+      "load-screen-assets/DSC_0670.jpg",
+      "load-screen-assets/DSC_0671.jpg",
+      "load-screen-assets/DSC_0672.jpg",
+      "load-screen-assets/DSC_0686.jpg",
+      "load-screen-assets/DSC_0687.jpg",
+      "load-screen-assets/DSC_0689.jpg",
+      "load-screen-assets/DSC_0690.jpg",
+      "load-screen-assets/DSC_0692.jpg",
+      "load-screen-assets/DSC_0694.jpg",
+      "load-screen-assets/DSC_0695.jpg"
+    ],
+    holdMs: 1000,
+    fadeMs: 600,
+    zoom: 1.04,
+    minVisibleMs: 1500
+  };
+
+  loader.style.setProperty("--slide-fade-ms", String(config.fadeMs));
+  loader.style.setProperty("--slide-zoom", String(config.zoom));
+
+  var slideA = loader.querySelector(".page-loader__slide--a");
+  var slideB = loader.querySelector(".page-loader__slide--b");
+  var slides = [slideA, slideB];
+  var activeIndex = 0;
+  var imageIndex = Math.floor(Math.random() * config.images.length);
+
+  if (config.images.length) {
+    slides[activeIndex].style.backgroundImage = "url('" + config.images[imageIndex] + "')";
+  }
+
+  function cycle() {
+    if (!loader.isConnected || config.images.length < 2) {
+      return;
+    }
+
+    var nextSlideIndex = (activeIndex + 1) % slides.length;
+    var nextImageIndex = (imageIndex + 1) % config.images.length;
+    var nextSlide = slides[nextSlideIndex];
+
+    nextSlide.style.backgroundImage = "url('" + config.images[nextImageIndex] + "')";
+    nextSlide.classList.add("is-active");
+    slides[activeIndex].classList.remove("is-active");
+
+    activeIndex = nextSlideIndex;
+    imageIndex = nextImageIndex;
+
+    window.setTimeout(cycle, config.holdMs);
+  }
+
+  window.setTimeout(cycle, config.holdMs);
+
+  var startTime = Date.now();
+
+  function hideLoader() {
+    document.body.classList.remove("is-loading");
+    loader.classList.add("is-hidden");
+    loader.addEventListener("transitionend", function () {
+      loader.remove();
+    });
+  }
+
+  window.addEventListener("load", function () {
+    var elapsed = Date.now() - startTime;
+    var remaining = Math.max(0, config.minVisibleMs - elapsed);
+    window.setTimeout(hideLoader, remaining);
+  });
+})();
+
 (() => {
         const timers = new WeakMap();
         const $all = (sel, root=document) => Array.from(root.querySelectorAll(sel));
@@ -477,7 +554,7 @@
   updateHintVisibility();
 })();
 (() => {
-  const MAX = 13;
+  const MAX = 14;
 
   const bar = document.querySelector(".progress-bar");
   const fill = bar?.querySelector(".progress-bar-fill");
@@ -506,19 +583,20 @@
   // Create moving "title-text" label
   const label = document.createElement("div");
   label.className = "progress-indicator-label";
-  Object.assign(label.style, {
+   Object.assign(label.style, {
     position: "absolute",
-    right: "-155px",          // label to the left of the bar; tweak if needed
-    width: "175px",
+    right: "-360px",          // label to the left of the bar; tweak if needed
+    width: "330px", 
     transform: "translateY(-50%)",
     fontFamily: "'IBM Plex Mono', monospace",
-    fontWeight: "170",
-    fontSize: "20px",
+    fontWeight: "670",
+    fontSize: "27px", 
     lineHeight: "1.2",
-    color: "#ffffffff",
+    whiteSpace: "pre-line",
+    color: "#FCF9EF",
     pointerEvents: "none",
     zIndex: "5",
-    textAlign: "right",
+    textAlign: "Left",
   });
   bar.appendChild(label);
 
@@ -589,19 +667,28 @@ function spinMelon() {
 }
 
   // Public API: call this when you get your model output (0..14)
+  function getSweetnessLabel(score) {
+    if (score < 2) return "You Are Sure That is a Watermelon Right?";
+    if (score < 5) return "Eat a Lemon at this point";
+    if (score < 8) return "It's ok... but we can definitly find somthing better";
+    if (score < 11) return "This is good... if you want to settle for average";
+    return "GRAB IT! GRAB IT!";
+  }
+
   window.setSweetnessScore = function setSweetnessScore(score) {
-  defaultMode = false;
+    defaultMode = false;
 
-  const s = Math.max(0, Math.min(MAX, Number(score) || 0));
-  const p = s / MAX;
-  const percent = Math.round(p * 100);
+    const s = Math.max(0, Math.min(MAX, Number(score) || 0));
+    const p = s / MAX;
+    const label = getSweetnessLabel(s);
+    const brixText = Number.isFinite(s) ? s.toFixed(2) : "0.00";
 
-  setMelonIconByPercent(p);
-  spinMelon();
+    setMelonIconByPercent(p);
+    spinMelon();
 
-  const scoreText = `${s}(Brix) ~${percent}%`;
-  animateTo(p, scoreText);
-};
+    const scoreText = `${brixText}(Brix)\n${label}`;
+    animateTo(p, scoreText);
+  };
 
 function setDefaultProgressPose() {
   defaultMode = true;
@@ -627,3 +714,5 @@ function setDefaultProgressPose() {
   
 
 })();
+
+

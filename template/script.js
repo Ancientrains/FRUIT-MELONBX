@@ -23,17 +23,17 @@
 
   var config = {
     images: [
-      "load-screen-assets/DSC_0669.jpg",
-      "load-screen-assets/DSC_0670.jpg",
-      "load-screen-assets/DSC_0671.jpg",
-      "load-screen-assets/DSC_0672.jpg",
-      "load-screen-assets/DSC_0686.jpg",
-      "load-screen-assets/DSC_0687.jpg",
-      "load-screen-assets/DSC_0689.jpg",
-      "load-screen-assets/DSC_0690.jpg",
-      "load-screen-assets/DSC_0692.jpg",
-      "load-screen-assets/DSC_0694.jpg",
-      "load-screen-assets/DSC_0695.jpg"
+      "load-screen-assets/DSC_0669.JPG",
+      "load-screen-assets/DSC_0670.JPG",
+      "load-screen-assets/DSC_0671.JPG",
+      "load-screen-assets/DSC_0672.JPG",
+      "load-screen-assets/DSC_0686.JPG",
+      "load-screen-assets/DSC_0687.JPG",
+      "load-screen-assets/DSC_0689.JPG",
+      "load-screen-assets/DSC_0690.JPG",
+      "load-screen-assets/DSC_0692.JPG",
+      "load-screen-assets/DSC_0694.JPG",
+      "load-screen-assets/DSC_0695.JPG"
     ],
     holdMs: 1000,
     fadeMs: 600,
@@ -714,5 +714,6 @@ function setDefaultProgressPose() {
   
 
 })();
+
 
 

@@ -75,11 +75,13 @@ def build_view_tensors(images: List[Image.Image], detector, transform):
     for image in images:
         results = detector.predict_image(image, confident_interval=CONFIDENCE_THRESHOLD)
         best_box = select_best_box(results)
+        if best_box is None:
+            continue
         cropped = crop_image(image, best_box)
         view_tensors.append(transform(cropped))
 
     if not view_tensors:
-        raise ValueError("No valid images provided.")
+        return None
 
     while len(view_tensors) < NUM_VIEWS:
         view_tensors.append(view_tensors[-1])
@@ -104,9 +106,10 @@ def load_images_from_request(files):
     return images
 
 
-def annotate_image(image: Image.Image, label_info):
+def annotate_image(image: Image.Image, label_info, brix_value: float):
     if label_info is None:
-        return image.copy(), "no_detection\n"
+        label_line = f"brix {brix_value:.3f}\nno_detection\n"
+        return image.copy(), label_line
 
     box = label_info["box"]
     class_id = label_info["label"]
@@ -125,8 +128,22 @@ def annotate_image(image: Image.Image, label_info):
     text_y = max(0, int(y1) - 12)
     draw.text((text_x, text_y), label_text, fill=(255, 0, 0), font=font)
 
-    label_line = f"{class_id} {class_name} {score:.4f} {x1:.1f} {y1:.1f} {x2:.1f} {y2:.1f}\n"
+    label_line = (
+        f"brix {brix_value:.3f}\n"
+        f"{class_id} {class_name} {score:.4f} {x1:.1f} {y1:.1f} {x2:.1f} {y2:.1f}\n"
+    )
     return annotated, label_line
+
+
+def predict_brix_for_box(image: Image.Image, box):
+    if box is None:
+        return 0.0
+    cropped = crop_image(image, box)
+    view = ssl_transform(cropped)
+    views = view.unsqueeze(0).repeat(NUM_VIEWS, 1, 1, 1).unsqueeze(0)
+    with torch.no_grad():
+        prediction = ssl_model(views.to(DEVICE)).cpu().item()
+    return round(float(prediction), 3)
 
 
 detector = ObjectDetectionResnetSPPAN(DETECTOR_MODEL_PATH, device=DEVICE)
@@ -151,8 +168,12 @@ def predict():
     images = [item["image"] for item in items]
 
     with torch.no_grad():
-        views = build_view_tensors(images, detector, ssl_transform).to(DEVICE)
-        prediction = round(ssl_model(views).cpu().item(), 3)
+        views = build_view_tensors(images, detector, ssl_transform)
+        if views is None:
+            prediction = 0.0
+        else:
+            views = views.to(DEVICE)
+            prediction = round(ssl_model(views).cpu().item(), 3)
 
     return jsonify({"sweetness": float(prediction)})
 
@@ -175,7 +196,9 @@ def annotate():
 
             results = detector.predict_image(image, confident_interval=CONFIDENCE_THRESHOLD)
             label_info = select_best_label(results)
-            annotated, label_line = annotate_image(image, label_info)
+            box = label_info["box"] if label_info else None
+            brix_value = predict_brix_for_box(image, box)
+            annotated, label_line = annotate_image(image, label_info, brix_value)
 
             img_buf = io.BytesIO()
             annotated.save(img_buf, format="PNG")

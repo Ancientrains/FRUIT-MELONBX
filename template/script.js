@@ -567,9 +567,9 @@
 
   async function loadTestImages() {
     const urls = [
-      '/test/DSC_0516.JPG',
-      '/test/DSC_0517.JPG',
-      '/test/DSC_0518.JPG'
+      'test/DSC_0516.JPG',
+      'test/DSC_0517.JPG',
+      'test/DSC_0518.JPG'
     ];
 
     try {
@@ -777,5 +777,6 @@ function setDefaultProgressPose() {
   
 
 })();
+
 
 

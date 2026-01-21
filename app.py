@@ -160,6 +160,10 @@ def index():
 def fonts(filename):
     return send_from_directory("fonts", filename)
 
+@app.get("/test/<path:filename>")
+def test_images(filename):
+    return send_from_directory("test", filename)
+
 
 @app.post("/api/predict")
 def predict():
@@ -176,11 +180,13 @@ def predict():
         views = build_view_tensors(images, detector, ssl_transform)
         if views is None:
             prediction = 0.0
+            detected = False
         else:
             views = views.to(DEVICE)
             prediction = round(ssl_model(views).cpu().item(), 3)
+            detected = True
 
-    return jsonify({"sweetness": float(prediction)})
+    return jsonify({"sweetness": float(prediction), "detected": detected})
 
 
 @app.post("/api/annotate")

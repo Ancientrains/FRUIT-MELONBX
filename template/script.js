@@ -437,6 +437,10 @@
     layoutStack();
   }
 
+  function clearAllPhotos() {
+    photos.slice().forEach(p => removePhoto(p.id));
+  }
+
   function replacePhoto(id, file) {
     const idx = photos.findIndex(p => p.id === id);
     if (idx === -1) return;
@@ -462,6 +466,13 @@
     downloadBtn.textContent = isLoading ? 'Preparing...' : 'Download Labels';
   }
 
+  function scrollToFirstArticle() {
+    const firstArticle = document.querySelector('.about-story article');
+    if (!firstArticle) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    firstArticle.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+  }
+
   async function runPrediction() {
     if (!photos.length) {
       showWarning('Upload at least one image first.');
@@ -484,8 +495,14 @@
       if (typeof data.sweetness !== 'number') {
         throw new Error('Invalid response from server.');
       }
+      if (data.detected === false) {
+        showWarning('No watermelon detected. Try a clearer image.');
+      }
       if (typeof window.setSweetnessScore === 'function') {
         window.setSweetnessScore(data.sweetness);
+        if (Number(data.sweetness) === 0) {
+          scrollToFirstArticle();
+        }
       }
     } catch (err) {
       showWarning(err.message || 'Prediction failed.');
@@ -547,6 +564,52 @@
     uploadInput.value = '';
     uploadInput.click();
   };
+
+  async function loadTestImages() {
+    const urls = [
+      '/test/DSC_0516.JPG',
+      '/test/DSC_0517.JPG',
+      '/test/DSC_0518.JPG'
+    ];
+
+    try {
+      const files = await Promise.all(urls.map(async (url) => {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Failed to load test images.');
+        const blob = await res.blob();
+        const name = url.split('/').pop() || 'test.jpg';
+        const type = blob.type || 'image/jpeg';
+        return new File([blob], name, { type });
+      }));
+      clearAllPhotos();
+      addFiles(files);
+    } catch (err) {
+      showWarning(err.message || 'Failed to load test images.');
+    }
+  }
+
+  function scrollToUploadButton() {
+    const target = document.querySelector('.button-upload, .buttons-upload, .button-component');
+    if (!target) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+  }
+
+  function updatePoetryText() {
+    const poetry = document.querySelector('.poetry-text p');
+    if (!poetry) return;
+    poetry.textContent = 'Be sure to upload the photos from the same watermelon, and Whole Watermelons...';
+  }
+
+  const ctaTestBtn = document.querySelector('.cta-test');
+  if (ctaTestBtn) {
+    ctaTestBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      updatePoetryText();
+      loadTestImages().then(scrollToUploadButton);
+    });
+  }
 
   analyzeBtn.addEventListener('click', runPrediction);
   downloadBtn.addEventListener('click', runDownload);
@@ -714,6 +777,5 @@ function setDefaultProgressPose() {
   
 
 })();
-
 
 

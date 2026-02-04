@@ -12,9 +12,14 @@ from detector import ObjectDetectionResnetSPPAN
 from SSL_test import load_model
 
 
-APP_ROOT = "template"
-DETECTOR_MODEL_PATH = "static/V17_model_resnet.pth"
-SSL_MODEL_PATH = "static/V10_kfold_siamese_SPP_attention_Ichannel.txt_fold4_best.pth"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+APP_ROOT = os.path.join(BASE_DIR, "template")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+FONTS_DIR = os.path.join(BASE_DIR, "fonts")
+TEST_DIR = os.path.join(BASE_DIR, "test")
+
+DETECTOR_MODEL_PATH = os.path.join(STATIC_DIR, "V17_model_resnet.pth")
+SSL_MODEL_PATH = os.path.join(STATIC_DIR, "V10_kfold_siamese_SPP_attention_Ichannel.txt_fold4_best.pth")
 CONFIDENCE_THRESHOLD = 0.5
 NUM_VIEWS = 3
 
@@ -158,11 +163,11 @@ def index():
 
 @app.get("/fonts/<path:filename>")
 def fonts(filename):
-    return send_from_directory("fonts", filename)
+    return send_from_directory(FONTS_DIR, filename)
 
 @app.get("/test/<path:filename>")
 def test_images(filename):
-    return send_from_directory("test", filename)
+    return send_from_directory(TEST_DIR, filename)
 
 
 @app.post("/api/predict")

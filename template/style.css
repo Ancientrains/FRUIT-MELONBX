@@ -22,12 +22,14 @@
     --design-w: 1920;
     --design-h: 1500;
     --scale: min(calc(100vw / var(--design-w)), calc(100vh / var(--design-h)));
+    --section3-font-scale:  1;
     --footer-ratio: 0.3354;
-    --wave-height: 850px; 
-    --footer-extra: 3500px;
+    --wave-height: 44.2708vw;
+    --footer-extra: 188.2917vw;
     
   }
-  
+
+  html { font-size: clamp(12px, calc(100vw / 120), 16px); }
   * {
       margin: 0;
       padding: 0;
@@ -107,7 +109,7 @@ body.is-loading .footer-root {
     position: relative;
     display: grid;
     place-items: center;
-    gap: 16px;
+    gap: 0.8333vw;
     text-align: center;
     color: #c5b8e4;
     font-family: "IBM Plex Mono", monospace;
@@ -115,13 +117,13 @@ body.is-loading .footer-root {
 }
 
 .page-loader__author{
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-weight: 300;
     transform: translateX(300%) translateY(-100%);
   }
 
 .page-loader__text {
-    font-size: 78px;
+    font-size: 4.875rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
@@ -129,8 +131,8 @@ body.is-loading .footer-root {
 .page-loader__text::after {
     content: "";
     display: inline-block;
-    width: 45px;
-    height: 6px;
+    width: 2.3438vw;
+    height: 0.3125vw;
     margin-left: 0;
     background: #c5b8e4;
     border-radius: 0px;
@@ -146,37 +148,47 @@ body.is-loading .footer-root {
 .stage{
   position: relative;
   width: 100%;
-  height: calc(var(--design-h) * 1px * var(--scale));
+  height: calc(var(--design-h) * 0.0521vw * var(--scale));
   overflow: visible;
 }
 
-  html, body { height: 100%; }
+  html, body { height: 100%; width: 100%; overflow-x: hidden; }
   /* Main Container */
   .desktop-1 {
       background-color: #c5b8e4;
       position: relative;
-      width: calc(var(--design-w) * 1px);
-      height: calc(var(--design-h) * 1px);
       margin: 0 auto;
       transform-origin: top center;
-      transform: scale(var(--scale));
       z-index: 0;
+      width: 100%;
+      height: 100vh;
   }
+
+.is-locking [data-locked] {
+    visibility: hidden !important;
+}
+
+.is-locked [data-locked] {
+    visibility: visible !important;
+    transition: none !important;
+}
   
 
 /* ===================================this is the overall position of each sections===================================*/
 
 
 .section-3{
-    position:relative;
-    top: -500px;
+    position: relative;
+    top: -26.0417vw;
 }
 
 /* ===================================this is the overall position of each sections===================================*/
 .footer-root{
   position: relative;
-  top: 200px;
-  width: 100vw;
+  top: 200vh;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   /* choose a footer height that behaves like your artboard scaling */
   height: calc(var(--wave-height) + var(--footer-extra));
   isolation: isolate;
@@ -189,9 +201,9 @@ body.is-loading .footer-root {
    so your existing absolute top/left values behave predictably. */
 .footer-upper-content{
   position: absolute;
-  bottom: 0px;
+  bottom: 0vw;
   left: 50%;
-  width: calc(var(--design-w) * 1px);
+  width: calc(var(--design-w) * 0.0521vw);
   height: 100%;
   transform-origin: top center;
   transform: translateX(-50%);
@@ -201,18 +213,28 @@ body.is-loading .footer-root {
 /* IMPORTANT: your elements like .title-text keep their old absolute coords.
    If you want them “earlier” in the footer, override ONLY their top values: */
 .footer-upper-content .title-text{
-  top: 959px;        /* was 959px on desktop */
+  top: 49.9479vw; /* was 959px on desktop */
   left: 50%;
 }
 
-.footer-upper-content .about-text{
-  top: 1000px;        /* was 1116px */
-  left: 50%;
+.footer-bg .about-me{
+    position: absolute;
+    inset: 0;
+    top: -700px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120rem;
+    height: 100%;
 }
-.footer-upper-content .about-me{
-    position:relative;
-    bottom: -1900px;    
-
+.about-me .illustration-melon{
+    rotate: -8deg;
+    top: 86rem;
+    left: 68.75rem;
+    width: 17.5rem;
+    height: 18.75rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+   background-position: center;
 }
 
 /* Leaf/photos/blueberry keep their existing absolute positions and will be
@@ -223,7 +245,7 @@ body.is-loading .footer-root {
 .wave-2-component{ bottom: 0; }
 .wave-1-component{
   bottom: 0;
-  transform: translateY(0.650vw);
+  transform: translateY(0.65vw);
 }
 .footer-root .wave-1-component,
 .footer-root .wave-2-component{
@@ -251,7 +273,7 @@ body.is-loading .footer-root {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgb(252, 249, 239);  /* match your lower wave color */
+  background: rgb(252, 249, 239); /* match your lower wave color */
   z-index: 0;
 }
 
@@ -260,29 +282,30 @@ body.is-loading .footer-root {
 
 .footer-root .footer-bg{
   position: absolute;
-  bottom: 384px;
+  bottom: 20vw;
   left: 50%;
-  width:  700px;
+  width: 36.4583vw;
   transform: translateX(-50%);
   transform-origin: bottom center;
   z-index: 2;
   filter: drop-shadow(0px 2px 4px rgba(20,20,20,0.2));
+  overflow: visible;
 }
 
 .footer-bg .shape1{
-     --c: 600px; /* control the curvature (works with percentage) */
+     --c: 31.25vw; /* control the curvature (works with percentage) */
     left: 50%;
  transform: translateX(-38%);
  width: 220vw;
-  height: 1300px;
+  height: 67.7083vw;
   aspect-ratio: 1920px/2;
-  mask: radial-gradient(50% var(--c) at bottom,#88272700 calc(100% - 2px),#FCF9EF);
+  mask: radial-gradient(50% var(--c) at bottom,#88272700 calc(100% - 0.1042vw),#FCF9EF);
   background: #FFC82E;
 }
 /* Use ONLY the versions scoped inside footer-bg (remove duplicates elsewhere) */
 .footer-root .footer-bg .status-text{
   position: absolute;
-  bottom: 90px;
+  bottom: 4.6875vw;
   left: 50%;
   width: 60%;
   transform: translateX(-50%);
@@ -294,7 +317,7 @@ body.is-loading .footer-root {
 .footer-root .footer-bg .lorem-text{
   position: absolute;
   left: 50%;
-  bottom: -200px;
+  bottom: -10.4167vw;
   transform: translateX(-50%);
   width: 100%;
   font-size: clamp(12px, 1.15vw, 20px);
@@ -309,14 +332,14 @@ body.is-loading .footer-root {
 @media (max-width: 768px){
   .footer-root .footer-bg{
     width: 92vw;
-    min-width: 0;   /* let it shrink properly on phones */
+    min-width: 0; /* let it shrink properly on phones */
   }
 }
 /* Footer melons sit above bg */
 .footer-root .b-r-melon-footer,
 .footer-root .b-l-melon-footer{
   position: absolute;
-  bottom: 20px;
+  bottom: 1.0417vw;
   z-index: 3;
 }
 
@@ -324,13 +347,13 @@ body.is-loading .footer-root {
 .footer-root .b-l-melon-footer{ left: 0vw; }
 
 .footer-root .b-r-melon-footer .footer-R{
-  width: min(283.008px,  calc(var(--design-w) * 0.14740px));
+  width: min(14.74vw,  calc(var(--design-w) * 0.0077vw));
   aspect-ratio: 283 / 278;
   background: center/contain no-repeat url('assets/B_R_melon-footer.png');
 }
 
 .footer-root .b-l-melon-footer .footer1-L{
-  width: min(348.5952px,  calc(var(--design-w) * 0.18156px));
+  width: min(18.156vw,  calc(var(--design-w) * 0.0095vw));
   aspect-ratio: 387 / 345.941;
   background: center/contain no-repeat url('assets/B_L_melon-footer.png');
 }
@@ -340,21 +363,23 @@ body.is-loading .footer-root {
       position: absolute;
       background-image: url('assets/upload_image-bg.png');
       background-position: center center;
-      height: 512px;
-      left: 488px;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: 26.6667vw;
+      left: 46.5%;
+      transform: translateX(-50%);
       border-radius: 33px;
-      box-shadow: 0px 4px 37px 0px rgba(0,0,0,0.25);
-      top: 1701px;
-      width: 768px;
+      box-shadow: none;
+      top: 88.5938vw;
   }
-  
+
   /* Walking Person 2 with Text */
   .wal-person2-with-text {
       position: absolute;
-      left: 520px;
-      top: 1502px;
-      width: 500px;
-      height: 199px;
+      left: 27.0833vw;
+      top: 78.2292vw;
+      width: 26.0417vw;
+      height: 10.3646vw;
   }
   
   .rectangle {
@@ -363,20 +388,20 @@ body.is-loading .footer-root {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 199px;
+        height: 10.3646vw;
         left: 0;
         top: 0;
-        width: 191px;
+        width: 9.9479vw;
   }
   
   .poetry-text {
       position: relative;
       font-family: 'Gloria Hallelujah', cursive;
       line-height: 0;
-      left: 350.5px;
+      left: 18.2552vw;
       font-style: normal;
       color: #fcf9ef;
-      font-size: 20px;
+      font-size: calc(1.25rem * var(--section3-font-scale));
       text-align: left;
       white-space: nowrap;
       top: 0;
@@ -391,10 +416,10 @@ body.is-loading .footer-root {
   
   .vector-4 {
       position: absolute;
-      height: 15px;
-      left: 120px;
-      top: 30px;
-      width: 8px;
+      height: 0.7812vw;
+      left: 6.25vw;
+      top: 1.5625vw;
+      width: 0.4167vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -409,10 +434,10 @@ body.is-loading .footer-root {
   
   .vector-5 {
       position: absolute;
-      height: 18px;
-      left: 155px;
-      top: 37px;
-      width: 16px;
+      height: 0.9375vw;
+      left: 8.0729vw;
+      top: 1.9271vw;
+      width: 0.8333vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -427,10 +452,10 @@ body.is-loading .footer-root {
   
   .vector-6 {
       position: absolute;
-      height: 32px;
-      left: 55px;
-      top: 10px;
-      width: 20px;
+      height: 1.6667vw;
+      left: 2.8646vw;
+      top: 0.5208vw;
+      width: 1.0417vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -445,10 +470,10 @@ body.is-loading .footer-root {
   
   .vector-7 {
       position: absolute;
-      height: 8px;
-      left: 62px;
-      top: 42px;
-      width: 4px;
+      height: 0.4167vw;
+      left: 3.2292vw;
+      top: 2.1875vw;
+      width: 0.2083vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -463,10 +488,10 @@ body.is-loading .footer-root {
   
   .vector-8 {
       position: absolute;
-      height: 24px;
-      left: 40px;
-      top: 25px;
-      width: 14px;
+      height: 1.25vw;
+      left: 2.0833vw;
+      top: 1.3021vw;
+      width: 0.7292vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -481,10 +506,10 @@ body.is-loading .footer-root {
   
   .vector-9 {
       position: absolute;
-      height: 6px;
-      left: 52px;
-      top: 47px;
-      width: 3px;
+      height: 0.3125vw;
+      left: 2.7083vw;
+      top: 2.4479vw;
+      width: 0.1562vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -507,17 +532,17 @@ body.is-loading .footer-root {
         background-size: contain;
         left: 18.91%;
         right: 68.33%;
-        top: 1667.5px;
+        top: 86.849vw;
         transform: translateY(-50%);
     }
   
   /* Walking Person 3 with Text */
   .wal-person3-with-text {
       position: absolute;
-      left: 1310px;
-      top: 2165.52px;
-      width: 200px;
-      height: 150px;
+      left: 68.2292vw;
+      top: 112.7875vw;
+      width: 10.4167vw;
+      height: 7.8125vw;
   }
   
   .person3-container {
@@ -526,8 +551,8 @@ body.is-loading .footer-root {
       height: 0;
       align-items: center;
       justify-content: center;
-      left: 79px;
-      top: 18.48px;
+      left: 4.1146vw;
+      top: 0.9625vw;
       width: 0;
   }
   
@@ -538,8 +563,8 @@ body.is-loading .footer-root {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 143.069px;
-        width: 126.989px;
+        height: 7.4515vw;
+        width: 6.614vw;
     }
   
   .person3-text-container {
@@ -548,7 +573,7 @@ body.is-loading .footer-root {
       height: 0;
       align-items: center;
       justify-content: center;
-      left: 89.88px;
+      left: 4.6813vw;
       top: 0;
       transform: translateX(-50%);
       width: 0;
@@ -558,14 +583,14 @@ body.is-loading .footer-root {
       flex: none;
       transform: rotate(356.209deg);
       font-family: 'Gloria Hallelujah', cursive;
-      height: 41px;
+      height: 2.1354vw;
       line-height: 0;
       font-style: normal;
       position: relative;
       color: #fcf9ef;
-      font-size: 20px;
+      font-size: calc(1.25rem * var(--section3-font-scale));
       text-align: center;
-      width: 177.433px;
+      width: 9.2413vw;
   }
   
   .person3-text p {
@@ -575,10 +600,10 @@ body.is-loading .footer-root {
   
   .vector-10 {
       position: absolute;
-      height: 12px;
-      left: 60px;
-      top: 50px;
-      width: 18px;
+      height: 0.625vw;
+      left: 3.125vw;
+      top: 2.6042vw;
+      width: 0.9375vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -593,10 +618,10 @@ body.is-loading .footer-root {
   
   .vector-11 {
       position: absolute;
-      height: 12px;
-      left: 75px;
-      top: 85px;
-      width: 6px;
+      height: 0.625vw;
+      left: 3.9062vw;
+      top: 4.4271vw;
+      width: 0.3125vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   
@@ -610,22 +635,22 @@ body.is-loading .footer-root {
   }
   .person3-text .vector-10,
   .person3-text .vector-11{
-      position:absolute;
+      position: absolute;
       filter: drop-shadow(0px, 2px, 4px, rgba(0,0,0,0.2));
   }
   
   .person3-text .vector-10{
       left: 40%;
-      top: 10 px;
-      margin-left: 6px; 
-      width: 18px; height: 12px;
+      top: 0.5208vw;
+      margin-left: 0.3125vw;
+      width: 0.9375vw; height: 0.625vw;
   }
   
   .person3-text .vector-11{
       left: 50%;
-      top: 40px;
-      margin-left: 4px;
-      width: 6px; height: 12px;
+      top: 2.0833vw;
+      margin-left: 0.2083vw;
+      width: 0.3125vw; height: 0.625vw;
   }
   
   .person3-image .person3-text-container{
@@ -634,9 +659,9 @@ body.is-loading .footer-root {
   }
   .person3-image .person3-text-container{
       left: 30%;
-      top: -25px;
-      margin-left: 4px;
-      width: 0px, height 0px ;
+      top: -1.3021vw;
+      margin-left: 0.2083vw;
+      width: 0vw, height 0vw ;
   }
   /* Leaf Background */
   .leaf-bg-container {
@@ -647,14 +672,14 @@ body.is-loading .footer-root {
       justify-content: center;
       left: 72.97%;
       right: 12.3%;
-      top: 852px;
+      top: 53.25rem;
   }
   
   .leaf-bg {
         flex: none;
-        height: 239px;
+        height: 14.9375rem;
         transform: rotate(79.596deg);
-        width: 265px;
+        width: 16.5625rem;
         background-image: url('assets/leaf-bg.png');
         background-position: center center; /*changes*/
         background-size: cover;
@@ -662,38 +687,46 @@ body.is-loading .footer-root {
     }
   
   /* Photos */
-  .l-photo {
+  .about-me .l-photo {
         position: absolute;
         background-image: url('assets/L_photo.png');
-        background-position:center center;
+        background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 315px;
-        left: 1270px;
+        height: 19.6874rem;
+        left: 79.375rem;
         border-radius: 30px;
         box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.25);
-        top: 981px;
-        width: 313px;
+        top: 61.3126rem;
+        width: 19.5625rem;
+        z-index: 1;
     }
   
-  .r-photo {
+  .about-me .r-photo {
         position: absolute;
         background-image: url('assets/R_photo.png');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 262px;
-        left: 374px;
+        height: 16.375rem;
+        left: 23.375rem;
         border-radius: 30px;
         box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.25);
-        top: 1089px;
-        width: 234px;
+        top: 68.0624rem;
+        width: 14.625rem;
+        z-index: 1;
 
     }
-  
+  .about-me .about-text{
+  top: 62.5rem; /* was 1116px */
+  left: 50%;
+  transform: translateX(-50%);
+}
   /* About Text */
-  .about-text {
-      position: relative;
+  .about-me .about-text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-family: 'Gliker', sans-serif;
       font-weight: 900;
       line-height: normal;
@@ -701,43 +734,49 @@ body.is-loading .footer-root {
       color: #000000;
       font-size: 0;
       text-align: center;
-      top: 1116px;
-      transform: translateX(-50%);
-      width: 585px;
-      left: 100%;
+      width: min(36.5626rem, 80vw);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
   }
   
-  .about-text p {
-      margin-bottom: 0;
-      font-size: 24px;
+  .about-me .about-text p,
+  .about-me .text-card p {
+      margin: 0;
+      font-size: 1.75rem;
   }
-  
-  .about-text p:nth-child(3) {
-      font-size: 20px;
+
+  .about-me .about-text p:nth-child(3),
+  .about-me .text-card p:nth-child(3) {
+      font-size: 2.5rem;
   }
-  
-  .about-text p:nth-child(4) {
+
+  .about-me .about-text p:nth-child(4),
+  .about-me .text-card p:nth-child(4) {
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 400;
-      font-size: 24px;
+      font-size: 2rem;
   }
-  
-  .about-text .caption {
+
+  .about-me .about-text .caption {
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 400;
       font-size: 16px;
       color: rgba(252, 249, 239, 0.55);
   }
   
+  
+  
   /* Title Text */
 
   /* Blue Element */
   .blue-1 {
       position: absolute;
-      left: 294px;
-      width: 211px;
-      height: 211px;
-      top: 1004px;
+      left: 18.375rem;
+      width: 13.1875rem;
+      height: 13.1875rem;
+      top: 62.75rem;
+      z-index: 2;
   }
   
   .blue-1-inner {
@@ -752,21 +791,22 @@ body.is-loading .footer-root {
         flex: none;
         position: relative;
         transform: rotate(170.553deg) scaleY(-100%) scaleX(-100%);
-        width: 202px;
-        height: 202px;
+        width: 12.625rem;
+        height: 12.625rem;
         background-image: url('assets/BLUE-1.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center center;
+
     }
   
   /* Hero Container */
   .hero-container {
       position: absolute;
-      height: 724px;
-      left: 405px;
-      top: 61px;
-      width: 995px;
+      height: 37.7083vw;
+      left: 21.0938vw;
+      top: 3.1771vw;
+      width: 51.8229vw;
   }
   
   .wal-person1 {
@@ -783,19 +823,22 @@ body.is-loading .footer-root {
   .lemon{
       background-image: url('assets/lemon.png');
       position: absolute;
-      left: 326px;
-      top: -14px;
-      width: 66.536px;
-      height: 50.977px;
+      left: 16.9792vw;
+      top: -0.7292vw;
+      width: 3.4654vw;
+      height: 2.6551vw;
       flex-shrink: 0;
       aspect-ratio: 66.54/50.98;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
   }
   .text_wal-person1{
       position: absolute;
-      width: 300px;
-      height: 39px;
-      top: 0px; left: 110px; 
-      color: #fcf9ef; 
+      width: 15.625vw;
+      height: 2.0312vw;
+      top: 0vw; left: 5.7292vw;
+      color: #fcf9ef;
       font-family: 'Gloria Hallelujah', cursive; 
       font-size: 18px;
       text-align: center;
@@ -803,27 +846,27 @@ body.is-loading .footer-root {
   
   .vector-1 {
       position: absolute;
-      width: 2.2px;
-      height: 8.086px;
-      left: 130px;
-      top: 27px;
+      width: 0.1146vw;
+      height: 0.4211vw;
+      left: 6.7708vw;
+      top: 1.4062vw;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   .vector-2 {
       position: absolute;
-      width: 12.129px;
-      height: 13.14px;
-      left: 135px;
-      top: 25px;
+      width: 0.6317vw;
+      height: 0.6844vw;
+      left: 7.0312vw;
+      top: 1.3021vw;
       flex-shrink: 0;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
   }
   .vector-3 {
       position: absolute;
-      width: 23.247px;
-      height: 5.054px;
-      left: 145px;
-      top: 30px;
+      width: 1.2108vw;
+      height: 0.2632vw;
+      left: 7.5521vw;
+      top: 1.5625vw;
       flex-shrink: 0;
       rotate: -18deg;
       filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
@@ -863,14 +906,14 @@ body.is-loading .footer-root {
       justify-content: center;
       left: 61.31%;
       right: 0.05%;
-      top: 173px;
+      top: 9.0104vw;
   }
   
   .t-r-melon {
       flex: none;
-      height: 299.474px;
+      height: 15.5976vw;
       transform: rotate(14.264deg);
-      width: 320.596px;
+      width: 16.6977vw;
       position: relative;
   }
   
@@ -886,7 +929,7 @@ body.is-loading .footer-root {
       aspect-ratio: 375/277;
       left: 21.61%;
       right: 43.31%;
-      top: calc(50% + 149.5px);
+      top: calc(50% + 7.7865vw);
       transform: translateY(-50%);
   }
   
@@ -897,7 +940,7 @@ body.is-loading .footer-root {
       height: 100%;
   }
   
-  .hero-text {
+   .hero-text {
       position: absolute;
       font-family: 'FONTSPRING DEMO - Vodka Sans', sans-serif;
       inset: 18.89% 22.17% 44.34% 30.59%;
@@ -906,29 +949,29 @@ body.is-loading .footer-root {
       color: #fcf9ef;
       font-size: 0;
       text-align: center;
-  }
-  
+   }
+
   .hero-text p:nth-child(1) {
       display: block;
       margin-bottom: 0;
-      font-size: 96px;
+      font-size: calc(6rem * var(--section3-font-scale));
   }
   
   .hero-text p:nth-child(2) {
       display: block;
       margin-bottom: 0;
-      font-size: 64px;
+      font-size: calc(4rem * var(--section3-font-scale));
   }
   
   .hero-text p:nth-child(3) {
       display: block;
       margin-bottom: 0;
-      font-size: 64px;
+      font-size: calc(4rem * var(--section3-font-scale));
   }
   
   .hero-text p:nth-child(4) {
       display: block;
-      font-size: 64px;
+      font-size: calc(4rem * var(--section3-font-scale));
   }
   
   .b-r-melon-behind {
@@ -953,9 +996,9 @@ body.is-loading .footer-root {
   
   .t-l-melon {
       flex: none;
-      height: 377.827px;
+      height: 19.6785vw;
       transform: rotate(18.225deg);
-      width: 372.303px;
+      width: 19.3908vw;
       position: relative;
   }
   
@@ -979,28 +1022,31 @@ body.is-loading .footer-root {
         top: 62.34%;
     }
   
-  .title-description{
-      position: absolute;
-      top: 500px; 
-      left: 22px;
-      width: 428px;
-      height: 46px;
-      flex-shrink: 0;
-      color: #FCF9EF;
-      text-align: center;
-      font-family: "FONTSPRING DEMO - Vodka Sans";
-      font-size: 33.5px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-  
-  }
+  .hero-text .title-description{
+    display: block;
+    width: 100%;
+    color: #FCF9EF;
+    text-align: center;
+    font-family: "FONTSPRING DEMO - Vodka Sans";
+    font-size: 33.5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: clamp(0.5rem ,2vw, 3rem);
+}
   /* Progress Bar Background */
   .progress-bar-bg {
       position: absolute;
       background-image: url('assets/progress_bar-bg.png');
-      left: 1433px;
-      top: 1638px;
+      background-position: center center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 5.9896vw;
+      height: 30.0521vw;
+      overflow: hidden;
+      border-radius: 99px;
+      left: 74.6354vw;
+      top: 85.3125vw;
   }
   
   .unnamed-1 {
@@ -1009,27 +1055,27 @@ body.is-loading .footer-root {
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
-      height: 577px;
-      left: -59px;
+      height: 30.0521vw;
+      left: -3.0729vw;
       -webkit-mask-image: url('assets/fb2e546b7be6dbbc4e9f068e9edcf3369b463613.svg');
       mask-image: url('assets/fb2e546b7be6dbbc4e9f068e9edcf3369b463613.svg');
-      -webkit-mask-position: 38px -17px;
-      mask-position: 38px -17px;
-      -webkit-mask-size: 155px 619px;
-      mask-size: 155px 619px;
+      -webkit-mask-position: 1.9792vw -0.8854vw;
+      mask-position: 1.9792vw -0.8854vw;
+      -webkit-mask-size: 8.0729vw 32.2396vw;
+      mask-size: 8.0729vw 32.2396vw;
       -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
       top: 0;
-      width: 327px;
+      width: 17.0312vw;
   }
   
   /* Upload Button */
 .buttons-upload {
       position: absolute;
-      height: 94px;
-      left: 689px;
-      top: 1846px;
-      width: 391px;
+      height: 4.8958vw;
+      left: 35.8854vw;
+      top: 96.1458vw;
+      width: 20.3646vw;
   }
   
   .button-component {
@@ -1063,7 +1109,7 @@ body.is-loading .footer-root {
   }
 
   .button-component:hover .button-text {
-    color:#ff9189 ;
+    color: #ff9189 ;
   }
   
   
@@ -1072,12 +1118,12 @@ body.is-loading .footer-root {
       position: absolute;
       font-family: 'FONTSPRING DEMO - Vodka Sans', monospace;
       font-weight: 30;
-      inset: 22% 17%;
+      inset: 22% 13%;
       line-height: 0;
       font-style: normal;
       color: #FCF9EF;
-      font-size: 45px;
-      text-align: left;
+      font-size: calc(2.0rem * var(--section3-font-scale));
+      text-align: center;
       white-space: nowrap;
       pointer-events: none;
   }
@@ -1095,7 +1141,7 @@ body.is-loading .footer-root {
 
 .buttons-upload.is-hidden{
   opacity: 0;
-  transform: translateY(40px); /* comes from bottom when showing again */
+  transform: translateY(2.0833vw); /* comes from bottom when showing again */
   pointer-events: none;
   visibility: hidden;
 }
@@ -1104,18 +1150,18 @@ body.is-loading .footer-root {
   /* Progress Bar */
   .progress-bar {
       position: absolute;
-      height: 577px;
-      left: 1432px;
-      top: 1638px;
-      width: 115px;
+      height: 30.0521vw;
+      left: 74.5833vw;
+      top: 85.3125vw;
+      width: 5.9896vw;
       border-radius: 40px;
   }
   
   .progress-bar-fill {
       position: absolute;
       border-radius: 40px;
-      bottom: 0px;
-      width: 115px;
+      bottom: 0vw;
+      width: 5.9896vw;
       height: 100%;
       left: 0;
       right: 0;
@@ -1135,26 +1181,16 @@ body.is-loading .footer-root {
   .illustration-melon{
     position: absolute;
     rotate: 8deg;
-    top: 2000px;
-    left: 380px;
+    top: 104.1667vw;
+    left: 19.7917vw;
     background-image: url(assets/icons0.png);
-    width: 250px;
-    height: 300px;
+    width: 13.0208vw;
+    height: 15.625vw;
     background-size: contain;
     background-repeat: no-repeat;
    background-position: center;
   }
 
-  .footer-upper-content .illustration-melon{
-    rotate: -8deg;
-    top: 1200px;
-    left: 1100px;
-       width: 280px;
-    height: 300px;
-    background-size: contain;
-    background-repeat: no-repeat;
-   background-position: center;
-  }
 
   .otis li {
   list-style: none;
@@ -1171,9 +1207,9 @@ body.is-loading .footer-root {
     padding: 1em;
     font-family: 'IBM Plex Mono', monospace;
       font-weight: 700;
-      height: 257px;
+      height: 13.3854vw;
       line-height: 0.8;
-      left: 937px;
+      left: 48.8021vw;
       font-style: normal;
       color: #000000;
       font-size: 28px;
@@ -1188,16 +1224,16 @@ body.is-loading .footer-root {
 
 /* Put this section OUTSIDE any transform: scale(...) artboard wrapper */
 .about-story{
-    transform: translateY(160px);
+    transform: translateY(15vw);
   background: transparent;
-  padding: clamp(48px, 6vw, 96px) 16px;
+  padding: clamp(2.5vw, 6vw, 5vw) 0.8333vw;
 }
 
 .about-story__inner{
-  width: min(1400px, 100%);
+  width: min(72.9167vw, 100%);
   margin: 0 auto;
   display: grid;
-  gap: clamp(44px, 345.6px, 1290px);
+  gap: clamp(2.2917vw, 18vw, 67.1875vw);
 }
 
 /* One block */
@@ -1206,7 +1242,7 @@ body.is-loading .footer-root {
   display: grid;
   grid-template-columns: 1.1fr .9fr;
   align-items: center;
-  gap: clamp(20px, 40px, 56px);
+  gap: clamp(1.0417vw, 2.0833vw, 2.9167vw);
 }
 
 .about-card--left{
@@ -1218,7 +1254,7 @@ body.is-loading .footer-root {
 }
 
 .about-card__title{
-  margin: 0 0 18px;
+  margin: 0 0 0.9375vw;
   color: var(--accent);
   font-family: "FONTSPRING DEMO - Vodka Sans", system-ui, bold;
   font-weight: 700;
@@ -1226,13 +1262,13 @@ body.is-loading .footer-root {
   letter-spacing: 0.02em;
 
   /* This is what makes it “fit screen at 100%” and scale smoothly */
-  font-size: clamp(28px, 65.28px, 75px);
+  font-size: calc(clamp(1.75rem, 4.08rem, 4.6875rem) * var(--section3-font-scale));
 }
 
 .about-card__body{
-  margin: 0 0 12px;
+  margin: 0 0 0.625vw;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(12px, 1.05vw, 18px);
+  font-size: calc(clamp(0.75rem, 1.05vw, 1.125rem) * var(--section3-font-scale));
   line-height: 1.8;
   color: rgba(20,20,20,0.70);
 }
@@ -1240,9 +1276,9 @@ body.is-loading .footer-root {
 .about-card__cta{
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.5208vw;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(11px, 0.95vw, 13px);
+  font-size: calc(clamp(0.6875rem, 0.95vw, 0.8125rem) * var(--section3-font-scale));
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(20,20,20,0.85);
@@ -1261,7 +1297,7 @@ body.is-loading .footer-root {
   text-transform: inherit;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.5208vw;
   cursor: pointer;
 }
 
@@ -1271,8 +1307,8 @@ body.is-loading .footer-root {
 }
 
 .about-card__cta .dot{
-  width: 10px;
-  height: 10px;
+  width: 0.5208vw;
+  height: 0.5208vw;
   border-radius: 999px;
   background: var(--accent);
   display: inline-block;
@@ -1281,7 +1317,7 @@ body.is-loading .footer-root {
 /* Circle image */
 /*.about-card__media{
   justify-self: center;
-  width: clamp(140px, 20vw, 510px);
+  width: clamp(7.2917vw, 20vw, 26.5625vw);
   aspect-ratio: 1 / 1;
   border-radius: 9999px;
   overflow: hidden;
@@ -1295,7 +1331,7 @@ body.is-loading .footer-root {
 }*/
 .about-card__media{
   justify-self: center;
-  width: clamp(140px, 22vw, 550px);
+  width: clamp(7.2917vw, 22vw, 28.6458vw);
   aspect-ratio: 1.4 / 1.1;
   overflow: hidden; /* still fine to keep */
   
@@ -1332,4 +1368,26 @@ body.is-loading .footer-root {
   .about-card__media{
     justify-self: start;
   }
+  .page-loader__author{
+    font-size: 0.75rem;
+  }
+  .page-loader__text{
+    font-size: 3.5rem;
+  }
+  .about-me .about-text p,
+  .about-me .text-card p{
+    font-size: 1.125rem;
+  }
+  .about-me .about-text p:nth-child(3),
+  .about-me .text-card p:nth-child(3){
+    font-size: 1rem;
+  }
+  .about-me .about-text p:nth-child(4),
+  .about-me .text-card p:nth-child(4){
+    font-size: 1.125rem;
+  }
+    :root {
+        --section3-font-scale: 0.7;
+        --footer-extra: 300vw;
+    }
 }

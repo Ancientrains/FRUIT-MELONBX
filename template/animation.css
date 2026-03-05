@@ -1,6 +1,6 @@
 .sticky-transform{
-  --base-transform: translateZ(0);      /* set if you have an existing rotation/translate */
-  --active-delta: translateZ(0);        /* what to add while "stuck" */
+  --base-transform: translateZ(0); /* set if you have an existing rotation/translate */
+  --active-delta: translateZ(0); /* what to add while "stuck" */
   transform: var(--base-transform);
   transition: transform .35s ease;
   will-change: transform;
@@ -11,32 +11,32 @@
 
 .t-l-melon.sticky-transform{
     --base-transform: rotate(18.219deg);
-    --active-delta:  translate(-117.32px, 19.67px) rotate(-33.964deg);
+    --active-delta: translate(-6.1104vw, 1.0245vw) rotate(-33.964deg);
 }
 .b-l-melon.sticky-transform{
     --base-transform: translateZ(0);
-    --active-delta: translate(-50.61px, -27.91px) rotate(9.3deg);
+    --active-delta: translate(-2.6359vw, -1.4536vw) rotate(9.3deg);
 }
 .t-r-melon.sticky-transform{
     --base-transform: translateZ(0);
-    --active-delta: translate(95px, -30px) rotate(37.557deg);
+    --active-delta: translate(4.9479vw, -1.5625vw) rotate(37.557deg);
 }
 .wal-person1.sticky-transform{
     --base-transform: translateZ(0);
-    --active-delta: translate(40.95px, -50.42px) rotate(1deg);
+    --active-delta: translate(2.1328vw, -2.626vw) rotate(1deg);
 }
 .b-r-melon.sticky-transform{
-    --active-delta: translate(-40.24px, 7px) rotate(-20.32deg)
+    --active-delta: translate(-2.0958vw, 0.3646vw) rotate(-20.32deg)
 }
 .b-r-melon-behind.sticky-transform{
-    --active-delta: translate(35px, 7px) rotate(41.375deg)
+    --active-delta: translate(1.8229vw, 0.3646vw) rotate(41.375deg)
 }
 .m-melon.sticky-transform{
     --base-transform: translateY(-50%);
-    --active-delta: translate(-21.52px, -21px) rotate(175deg)
+    --active-delta: translate(-1.1208vw, -1.0938vw) rotate(175deg)
 }
 .s-melon.sticky-transform{
-    --active-delta: translate(-5.69px, -22px) rotate(10.798deg)
+    --active-delta: translate(-0.2964vw, -1.1458vw) rotate(10.798deg)
 }
 
 .blue-1-image {
@@ -47,12 +47,12 @@
 /* Use CSS variables so cascade can't "race" you */
 .blue-1-image::before,
 .blue-1-image::after{
-  content:"";
-  position:absolute; inset:0;
+  content: "";
+  position: absolute; inset:0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  pointer-events:none;
+  pointer-events: none;
   transition: opacity .35 s ease;
   will-change: opacity;
   border-radius: inherit;
@@ -69,10 +69,10 @@
 /* Overlay (new) image */
 .blue-1-image::after{
   background-image: url("./assets/Variant2.png");
-  top: 10px; left: 10px;
+  top: 0.5208vw; left: 0.5208vw;
   opacity: var(--blue1-after, 0);
   z-index: 2;
-  transform:scaleX(-1) scaleY(-1);
+  transform: scaleX(-1) scaleY(-1);
 }
 
 .blue-1:hover .blue-1-image,
@@ -83,12 +83,12 @@
 
 .blue-1-image{
   /* edit these live in DevTools */
-  --after-w: 142%;      /* width of ::after */
-  --after-h: 142%;      /* height of ::after */
-  --after-x: 74%;      /* anchor x position inside parent */
-  --after-y: 52%;      /* anchor y position inside parent */
+  --after-w: 142%; /* width of ::after */
+  --after-h: 142%; /* height of ::after */
+  --after-x: 74%; /* anchor x position inside parent */
+  --after-y: 52%; /* anchor y position inside parent */
   --after-rot: 10deg; /* match your current rotation */
-  --after-flip-x: 1;  /* use -1 or 1 (not %) */
+  --after-flip-x: 1; /* use -1 or 1 (not %) */
   --after-flip-y: 1;
 }
 
@@ -98,7 +98,7 @@
   width: var(--after-w);
   height: var(--after-h);
   left: var(--after-x);
-  top:  var(--after-y);
+  top: var(--after-y);
   transform: translate(-50%, -50%)
              rotate(var(--after-rot))
              scaleX(var(--after-flip-x))
@@ -110,7 +110,7 @@
 .wal-person1 .vector-3,
 .wal-person1 .text_wal-person1{
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-0.3125vw);
   transition: opacity .35s ease, transform .35s ease;
   will-change: opacity, transform;
   pointer-events: none; /* avoid accidental hover while hidden */
@@ -118,7 +118,7 @@
 
 .title-description{
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(0.3125vw);
   transition: opacity .35s ease, transform .35s ease;
   will-change: opacity, transform;
   pointer-events: none;
@@ -255,12 +255,12 @@
 
 .about-card{
   --t-title: 0ms;
-  --t-body:  140ms;
-  --t-cta:   320ms;
+  --t-body: 140ms;
+  --t-cta: 320ms;
 
-  --y-title: 22px;
-  --y-body:  18px;
-  --y-cta:   10px;
+  --y-title: 1.1458vw;
+  --y-body: 0.9375vw;
+  --y-cta: 0.5208vw;
 
   --cta-scale-from: 0.72;
 }

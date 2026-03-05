@@ -1,0 +1,481 @@
+{
+  "baseDesign": {
+    "width": 1920,
+    "height": 1500
+  },
+  "components": [
+    {
+      "id": "about-me",
+      "selector": ".about-me",
+      "percentages": {
+        "top": -41.6667
+      }
+    },
+    {
+      "id": "about-story--inner",
+      "selector": ".about-story__inner",
+      "percentages": {
+        "width": 72.9167
+      }
+    },
+    {
+      "id": "about-text",
+      "selector": ".about-text",
+      "percentages": {
+        "width": 30.4688,
+        "top": 58.125
+      }
+    },
+    {
+      "id": "b-l-melon-footer",
+      "selector": ".b-l-melon-footer",
+      "percentages": {
+        "left": 0.0,
+        "bottom": 1.0417
+      }
+    },
+    {
+      "id": "b-r-melon-footer",
+      "selector": ".b-r-melon-footer",
+      "percentages": {
+        "right": 0.0,
+        "bottom": 1.0417
+      }
+    },
+    {
+      "id": "blue-1",
+      "selector": ".blue-1",
+      "percentages": {
+        "width": 10.9896,
+        "height": 10.9896,
+        "left": 15.3125,
+        "top": 52.2917
+      }
+    },
+    {
+      "id": "blue-1-image",
+      "selector": ".blue-1-image",
+      "percentages": {
+        "width": 10.5208,
+        "height": 10.5208
+      }
+    },
+    {
+      "id": "buttons-upload",
+      "selector": ".buttons-upload",
+      "percentages": {
+        "width": 20.3646,
+        "height": 4.8958,
+        "left": 35.8854,
+        "top": 96.1458
+      }
+    },
+    {
+      "id": "desktop-1",
+      "selector": ".desktop-1",
+      "percentages": {
+        "width": 100.0
+      }
+    },
+    {
+      "id": "dot",
+      "selector": ".dot",
+      "percentages": {
+        "width": 0.5208,
+        "height": 0.5208
+      }
+    },
+    {
+      "id": "footer-R",
+      "selector": ".footer-R",
+      "percentages": {
+        "width": 14.74
+      }
+    },
+    {
+      "id": "footer-bg",
+      "selector": ".footer-bg",
+      "percentages": {
+        "width": 36.4583,
+        "bottom": 20.0
+      }
+    },
+    {
+      "id": "footer-root",
+      "selector": ".footer-root",
+      "percentages": {
+        "width": 100.0
+      }
+    },
+    {
+      "id": "footer-upper-content",
+      "selector": ".footer-upper-content",
+      "percentages": {
+        "width": 0.0521,
+        "bottom": 0.0
+      }
+    },
+    {
+      "id": "footer1-L",
+      "selector": ".footer1-L",
+      "percentages": {
+        "width": 18.156
+      }
+    },
+    {
+      "id": "hero-container",
+      "selector": ".hero-container",
+      "percentages": {
+        "width": 51.8229,
+        "height": 37.7083,
+        "left": 21.0938,
+        "top": 3.1771
+      }
+    },
+    {
+      "id": "illustration-melon",
+      "selector": ".illustration-melon",
+      "percentages": {
+        "width": 14.5833,
+        "height": 15.625,
+        "left": 21,
+        "top": 104.5
+      }
+    },
+    {
+      "id": "l-photo",
+      "selector": ".l-photo",
+      "percentages": {
+        "width": 16.3021,
+        "height": 16.4062,
+        "left": 66.1458,
+        "top": 51.0938
+      }
+    },
+    {
+      "id": "leaf-bg",
+      "selector": ".leaf-bg",
+      "percentages": {
+        "width": 13.8021,
+        "height": 12.4479
+      }
+    },
+    {
+      "id": "leaf-bg-container",
+      "selector": ".leaf-bg-container",
+      "percentages": {
+        "top": 44.375
+      }
+    },
+    {
+      "id": "lemon",
+      "selector": ".lemon",
+      "percentages": {
+        "width": 3.4654,
+        "height": 2.6551,
+        "left": 16.9792,
+        "top": -0.7292
+      }
+    },
+    {
+      "id": "lorem-text",
+      "selector": ".lorem-text",
+      "percentages": {
+        "bottom": -10.4167
+      }
+    },
+    {
+      "id": "m-melon",
+      "selector": ".m-melon",
+      "percentages": {
+        "top": 22.7865
+      }
+    },
+    {
+      "id": "mid-melon",
+      "selector": ".mid-melon",
+      "percentages": {
+        "top": 86.849
+      }
+    },
+    {
+      "id": "navFooterLinkCol",
+      "selector": ".navFooterLinkCol",
+      "percentages": {
+        "height": 13.3854,
+        "left": 48.8021
+      }
+    },
+    {
+      "id": "page-loader--text",
+      "selector": ".page-loader__text",
+      "percentages": {
+        "width": 2.3438,
+        "height": 0.3125
+      }
+    },
+    {
+      "id": "person3-container",
+      "selector": ".person3-container",
+      "percentages": {
+        "left": 4.1146,
+        "top": 0.9625
+      }
+    },
+    {
+      "id": "person3-image",
+      "selector": ".person3-image",
+      "percentages": {
+        "width": 6.614,
+        "height": 7.4515
+      }
+    },
+    {
+      "id": "person3-text",
+      "selector": ".person3-text",
+      "percentages": {
+        "width": 9.2413,
+        "height": 2.1354
+      }
+    },
+    {
+      "id": "person3-text-container",
+      "selector": ".person3-text-container",
+      "percentages": {
+        "width": 0.0,
+        "top": -1.3021
+      }
+    },
+    {
+      "id": "poetry-text",
+      "selector": ".poetry-text",
+      "percentages": {
+        "left": 18.2552
+      }
+    },
+    {
+      "id": "progress-bar",
+      "selector": ".progress-bar",
+      "percentages": {
+        "width": 5.9896,
+        "height": 30.0521,
+        "left": 74.5833,
+        "top": 85.3125
+      }
+    },
+    {
+      "id": "progress-bar-bg",
+      "selector": ".progress-bar-bg",
+      "percentages": {
+        "left": 74.6354,
+        "top": 85.3125
+      }
+    },
+    {
+      "id": "progress-bar-fill",
+      "selector": ".progress-bar-fill",
+      "percentages": {
+        "bottom": 0.0
+      }
+    },
+    {
+      "id": "r-photo",
+      "selector": ".r-photo",
+      "percentages": {
+        "width": 12.1875,
+        "height": 13.6458,
+        "left": 19.4792,
+        "top": 56.7187
+      }
+    },
+    {
+      "id": "rectangle",
+      "selector": ".rectangle",
+      "percentages": {
+        "width": 9.9479,
+        "height": 10.3646
+      }
+    },
+    {
+      "id": "section-3",
+      "selector": ".section-3",
+      "percentages": {
+        "top": -26.0417
+      }
+    },
+    {
+      "id": "shape1",
+      "selector": ".shape1",
+      "percentages": {
+        "width": 220.0,
+        "height": 67.7083
+      }
+    },
+    {
+      "id": "stage",
+      "selector": ".stage",
+      "percentages": {
+        "height": 0.0521
+      }
+    },
+    {
+      "id": "status-text",
+      "selector": ".status-text",
+      "percentages": {
+        "bottom": 4.6875
+      }
+    },
+    {
+      "id": "t-r-melon-container",
+      "selector": ".t-r-melon-container",
+      "percentages": {
+        "top": 9.0104
+      }
+    },
+    {
+      "id": "text-wal-person1",
+      "selector": ".text_wal-person1",
+      "percentages": {
+        "width": 15.625,
+        "height": 2.0312,
+        "left": 5.7292,
+        "top": 0.0
+      }
+    },
+    {
+      "id": "unnamed-1",
+      "selector": ".unnamed-1",
+      "percentages": {
+        "width": 17.0312,
+        "height": 30.0521,
+        "left": -3.0729
+      }
+    },
+    {
+      "id": "upload-image-bg",
+      "selector": ".upload-image-bg",
+      "percentages": {
+        "width": 44.0,
+        "height": 30.0,
+        "left": 46.15,
+        "top": 85.5938
+      }
+    },
+    {
+      "id": "vector-1",
+      "selector": ".vector-1",
+      "percentages": {
+        "width": 0.1146,
+        "height": 0.4211,
+        "left": 6.7708,
+        "top": 1.4062
+      }
+    },
+    {
+      "id": "vector-10",
+      "selector": ".vector-10",
+      "percentages": {
+        "width": 0.9375,
+        "height": 0.625,
+        "top": 2.2
+      }
+    },
+    {
+      "id": "vector-11",
+      "selector": ".vector-11",
+      "percentages": {
+        "width": 0.3125,
+        "height": 0.625,
+        "top": 2.0833
+      }
+    },
+    {
+      "id": "vector-2",
+      "selector": ".vector-2",
+      "percentages": {
+        "width": 0.6317,
+        "height": 0.6844,
+        "left": 7.0312,
+        "top": 1.3021
+      }
+    },
+    {
+      "id": "vector-3",
+      "selector": ".vector-3",
+      "percentages": {
+        "width": 1.2108,
+        "height": 0.2632,
+        "left": 7.5521,
+        "top": 1.5625
+      }
+    },
+    {
+      "id": "vector-4",
+      "selector": ".vector-4",
+      "percentages": {
+        "left": 6.25,
+        "top": 1.5625
+      }
+    },
+    {
+      "id": "vector-5",
+      "selector": ".vector-5",
+      "percentages": {
+        "left": 8.0729,
+        "top": 1.9271
+      }
+    },
+    {
+      "id": "vector-6",
+      "selector": ".vector-6",
+      "percentages": {
+        "left": 2.8646,
+        "top": 0.5208
+      }
+    },
+    {
+      "id": "vector-7",
+      "selector": ".vector-7",
+      "percentages": {
+        "left": 3.2292,
+        "top": 2.1875
+      }
+    },
+    {
+      "id": "vector-8",
+      "selector": ".vector-8",
+      "percentages": {
+        "left": 2.0833,
+        "top": 1.3021
+      }
+    },
+    {
+      "id": "vector-9",
+      "selector": ".vector-9",
+      "percentages": {
+        "left": 2.7083,
+        "top": 2.4479
+      }
+    },
+    {
+      "id": "wal-person2-with-text",
+      "selector": ".wal-person2-with-text",
+      "percentages": {
+        "width": 26.0417,
+        "height": 10.3646,
+        "left": 27.0833,
+        "top": 78.2292
+      }
+    },
+    {
+      "id": "wal-person3-with-text",
+      "selector": ".wal-person3-with-text",
+      "percentages": {
+        "width": 10.4167,
+        "height": 7.8125,
+        "left": 68.2292,
+        "top": 112.7875
+      }
+    }
+  ]
+}

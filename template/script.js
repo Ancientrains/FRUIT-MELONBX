@@ -1,4 +1,3 @@
-
 (() => {
     const target = document.querySelector('.placeholder-section');
     if (!target) return;
@@ -246,16 +245,16 @@
     .upload-thumb{ position:absolute; flex:0 0 auto; width:240px; height:240px; border-radius:16px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,.12); }
     .upload-thumb img{ width:100%; height:100%; object-fit:cover; display:block; cursor:pointer; }
     .upload-thumb__x{ position:absolute; top:8px; right:8px; width:28px; height:28px; border-radius:999px; border:0; cursor:pointer;
-      background:rgba(0,0,0,.55); color:#fff; font-size:18px; line-height:28px; display:flex; align-items:center; justify-content:center; }
+      background:rgba(0,0,0,.55); color:#fff; font-size:calc(1.125rem * var(--section3-font-scale)); line-height:1.75rem; display:flex; align-items:center; justify-content:center; }
     .upload-thumb__x:hover{ background:rgba(0,0,0,.75); }
-    .upload-hint{ position:absolute; right:14px; bottom:14px; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.85); font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+    .upload-hint{ position:absolute; right:44px; bottom:55px; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.85); font: calc(0.875rem * var(--section3-font-scale))/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; }
     .upload-warning{ position:absolute; right:14px; top:14px; padding:8px 10px; border-radius:12px; background:rgba(255, 220, 220, .95); border:1px solid rgba(200,0,0,.25);
-      font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; display:none; }
+      font: calc(0.875rem * var(--section3-font-scale))/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; display:none; }
     .upload-analyze{ position:absolute; right:14px; bottom:14px; padding:10px 14px; border-radius:12px; border:0; cursor:pointer;
-      background:#111; color:#fff; font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; letter-spacing:.2px; }
+      background:#111; color:#fff; font: calc(0.875rem * var(--section3-font-scale))/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; letter-spacing:.2px; }
     .upload-analyze[disabled]{ opacity:.6; cursor:default; }
     .upload-download{ position:absolute; right:14px; bottom:56px; padding:10px 14px; border-radius:12px; border:0; cursor:pointer;
-      background:#fff; color:#111; font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; letter-spacing:.2px; }
+      background:#fff; color:#111; font: calc(0.875rem * var(--section3-font-scale))/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial; letter-spacing:.2px; }
     .upload-download[disabled]{ opacity:.6; cursor:default; }
   `;
   document.head.appendChild(style);
@@ -635,7 +634,7 @@
     left: "50%",
     width: "14px",
     height: "14px",
-    borderRadius: "99px",
+    borderRadius: "999px",
     transform: "translate(-50%, -50%)",
     background: "#000",
     pointerEvents: "none",
@@ -652,9 +651,9 @@
     width: "330px", 
     transform: "translateY(-50%)",
     fontFamily: "'IBM Plex Mono', monospace",
-    fontWeight: "670",
-    fontSize: "27px", 
-    lineHeight: "1.2",
+    fontWeight: "600",
+    fontSize: "calc(1.6875rem * var(--section3-font-scale))",
+    lineHeight: "1.1",
     whiteSpace: "pre-line",
     color: "#FCF9EF",
     pointerEvents: "none",
@@ -765,8 +764,6 @@ function setDefaultProgressPose() {
 }
 
 
-
-
   // Keep label aligned if window resizes
   window.addEventListener("resize", () => {
     if (defaultMode) setDefaultProgressPose();
@@ -774,9 +771,64 @@ function setDefaultProgressPose() {
   });
   // Optional initial state
   setDefaultProgressPose();
-  
 
 })();
 
 
+
+
+// Viewport lock (test): apply to all components within .desktop-1 using width-based scaling.
+(function initViewportLock() {
+  const snapWidth = window.innerWidth;
+
+  function run() {
+    document.body.classList.add('is-locking');
+
+    const desktop = document.querySelector('.desktop-1');
+    if (desktop) {
+      desktop.style.transform = 'none';
+      desktop.style.width = '100%';
+      desktop.style.height = '100%';
+    }
+
+    fetch('./components.json')
+      .then(r => r.json())
+      .then(data => {
+        const { components = [] } = data || {};
+
+        components.forEach(comp => {
+          if (!comp || !comp.selector) return;
+          const el = document.querySelector(comp.selector);
+          if (!el) return;
+          if (!el.closest('.desktop-1')) return;
+          if (comp.selector === '.m-melon') return;
+
+          const pixels = {};
+          for (const [prop, pct] of Object.entries(comp.percentages || {})) {
+            pixels[prop] = Math.round((pct / 100) * snapWidth);
+          }
+
+          if (Number.isFinite(pixels.left)) el.style.setProperty('left', `${pixels.left}px`, 'important');
+          if (Number.isFinite(pixels.top)) el.style.setProperty('top', `${pixels.top}px`, 'important');
+          if (Number.isFinite(pixels.right)) el.style.setProperty('right', `${pixels.right}px`, 'important');
+          if (Number.isFinite(pixels.bottom)) el.style.setProperty('bottom', `${pixels.bottom}px`, 'important');
+          if (Number.isFinite(pixels.width)) el.style.setProperty('width', `${pixels.width}px`, 'important');
+          if (Number.isFinite(pixels.height)) el.style.setProperty('height', `${pixels.height}px`, 'important');
+
+          el.dataset.locked = 'true';
+        });
+
+        document.body.classList.remove('is-locking');
+        document.body.classList.add('is-locked');
+      })
+      .catch(err => {
+        console.error('Lock failed, falling back to CSS', err);
+        document.body.classList.remove('is-locking');
+        if (desktop) desktop.style.transform = '';
+      });
+  }
+
+  if (document.body) run();
+  else document.addEventListener('DOMContentLoaded', run, { once: true });
+})();
 

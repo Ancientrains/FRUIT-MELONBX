@@ -764,6 +764,8 @@ function setDefaultProgressPose() {
 }
 
 
+
+
   // Keep label aligned if window resizes
   window.addEventListener("resize", () => {
     if (defaultMode) setDefaultProgressPose();

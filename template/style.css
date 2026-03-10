@@ -117,13 +117,13 @@ body.is-loading .footer-root {
 }
 
 .page-loader__author{
-    font-size: 0.9375rem;
+    font-size: 15px;
     font-weight: 300;
     transform: translateX(300%) translateY(-100%);
   }
 
 .page-loader__text {
-    font-size: 4.875rem;
+    font-size: 78px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
@@ -228,7 +228,7 @@ body.is-loading .footer-root {
 }
 .about-me .illustration-melon{
     rotate: -8deg;
-    top: 86rem;
+    top: 75rem;
     left: 68.75rem;
     width: 17.5rem;
     height: 18.75rem;
@@ -740,22 +740,19 @@ body.is-loading .footer-root {
       gap: 0.5rem;
   }
   
-  .about-me .about-text p,
-  .about-me .text-card p {
+  .about-me .about-text p {
       margin: 0;
-      font-size: 1.75rem;
+      font-size: 24px;
   }
 
-  .about-me .about-text p:nth-child(3),
-  .about-me .text-card p:nth-child(3) {
-      font-size: 2.5rem;
+  .about-me .about-text p:nth-child(3) {
+      font-size: 20px;
   }
 
-  .about-me .about-text p:nth-child(4),
-  .about-me .text-card p:nth-child(4) {
+  .about-me .about-text p:nth-child(4) {
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 400;
-      font-size: 2rem;
+      font-size: 24px;
   }
 
   .about-me .about-text .caption {
@@ -1032,7 +1029,7 @@ body.is-loading .footer-root {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-top: clamp(0.5rem ,2vw, 3rem);
+    margin-top: 8rem ;
 }
   /* Progress Bar Background */
   .progress-bar-bg {
@@ -1122,7 +1119,7 @@ body.is-loading .footer-root {
       line-height: 0;
       font-style: normal;
       color: #FCF9EF;
-      font-size: calc(2.0rem * var(--section3-font-scale));
+      font-size: calc(2.8125rem * var(--section3-font-scale));
       text-align: center;
       white-space: nowrap;
       pointer-events: none;
@@ -1367,24 +1364,6 @@ body.is-loading .footer-root {
   }
   .about-card__media{
     justify-self: start;
-  }
-  .page-loader__author{
-    font-size: 0.75rem;
-  }
-  .page-loader__text{
-    font-size: 3.5rem;
-  }
-  .about-me .about-text p,
-  .about-me .text-card p{
-    font-size: 1.125rem;
-  }
-  .about-me .about-text p:nth-child(3),
-  .about-me .text-card p:nth-child(3){
-    font-size: 1rem;
-  }
-  .about-me .about-text p:nth-child(4),
-  .about-me .text-card p:nth-child(4){
-    font-size: 1.125rem;
   }
     :root {
         --section3-font-scale: 0.7;
